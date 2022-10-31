@@ -1,17 +1,24 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import SingleCoffee from './SingleCoffee';
 
 function App() {
-  const [data, setData] = useState([{name: 'Colada', price: '40cents'}])
+  const [data, setData] = useState([{ name: 'Colada', price: '40cents' }])
+  
+
+  useEffect(() => {
+    getCoffee()
+  }, [])
+
+
 
   const getCoffee = () => {
     fetch('https://api.sampleapis.com/coffee/hot')
       .then(res => res.json()) // convert to json
       .then(data => setData(data)) //get formatted data
       .catch(err => console.error(err))
-    
+
   }
 
   console.log('my data', data)
@@ -22,8 +29,8 @@ function App() {
         <button onClick={() => getCoffee()}>Get me Coffee</button>
         <div className='menu-items'>
           {data.map(item => {
-              console.log('each item', item)
-            return <SingleCoffee  entireObject={item}/> 
+            console.log('each item', item)
+            return <SingleCoffee entireObject={item} />
           })}
 
           {/* <SingleCoffee name='Black American Coffee' price='$$$$' description='yummy' />

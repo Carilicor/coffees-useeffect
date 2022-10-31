@@ -1,5 +1,8 @@
-export default function SingleCoffee({name, price, description}) {
-    
+import { useState } from "react"
+
+export default function SingleCoffee({entireObject}) {
+    const [favorite, setFavorite] = useState(false)
+    let favoriteTest = false
     // const exampleProps = {
     //     description: 'yummy',
     //     name: 'Cafe Cubano',
@@ -15,14 +18,16 @@ export default function SingleCoffee({name, price, description}) {
     //console.log('pros-here', name)
     return(
         
-          <div className="menu-items__item">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/A_small_cup_of_coffee.JPG/640px-A_small_cup_of_coffee.JPG" 
+        //   <div className="menu-items__item" style={{backgroundColor: favorite ? 'red' : 'white'}}>
+          <div className="menu-items__item" style={{backgroundColor: favoriteTest ? 'red' : 'white'}}>
+            <img src={entireObject.image} 
               alt="" />
             <div>
-              <h3>{name}</h3>
-              <span>{price}</span>
-                <p>{description}</p>
-              <p>Black coffee is as simple as it gets</p>
+              <h3>{entireObject.name}</h3>
+              <span>{entireObject.price}</span>
+                <p>{entireObject.description}</p>
+             {/* <button onClick={() => setFavorite(true)}>Favorite</button> */}
+             <button onClick={() => (favoriteTest = true)}>Favorite</button>
             </div>
           </div>
           
